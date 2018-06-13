@@ -58,7 +58,7 @@ projects:
   ```
   hooks:
   post-deploy:
-    - graphql get-schema -p prisma
+    - graphql get-schema -p database
   ```
 1. Run `prisma deploy`
 
