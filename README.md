@@ -1,5 +1,5 @@
 # hackernews-node
-[https://www.howtographql.com/graphql-js/0-introduction/]
+https://www.howtographql.com/graphql-js/0-introduction/
 
 ## Schema
 
@@ -21,7 +21,7 @@ Every field inside the schema definition is backed by one resolver function whos
 ### Creating Prisma binding instance
 
 1. `yarn add prisma-binding`
-1. Update instantiation of the `GraphQLServer` in `index.js`:
+2. Update instantiation of the `GraphQLServer` in `index.js`:
 ```javascript
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
@@ -37,8 +37,8 @@ const server = new GraphQLServer({
   }),
 })
 ```
-1. Import `prisma-binding` to index.js
-1. Create a `.graphqlconfig` file:
+3. Import `prisma-binding` to index.js
+4. Create a `.graphqlconfig` file:
 ```
 projects:
   app:
@@ -51,7 +51,7 @@ projects:
     extensions:
       prisma: database/prisma.yml
 ```
-1. Download the Prisma database schema to `src/generated/prisma.graphql`
+5. Download the Prisma database schema to `src/generated/prisma.graphql`
   * run `graphql get-schema --project database`
   * where `database` is the name of your folder where `prisma.yml` is
   * to make Prisma database update every time deploy changes add below to prisma.yml file:
@@ -60,7 +60,7 @@ projects:
   post-deploy:
     - graphql get-schema -p database
   ```
-1. Run `prisma deploy`
+6. Run `prisma deploy`
 
 You can import defintions from the generated schema using below syntax in .graphql files:
 ```
