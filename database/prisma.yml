@@ -1,6 +1,3 @@
 endpoint: https://eu1.prisma.sh/david-thorpe-aa275c/database/dev
 datamodel: datamodel.graphql
 secret: daveystest
-hooks:
-  post-deploy:
-    - graphql get-schema -p database

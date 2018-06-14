@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/david-thorpe-aa275c/database/dev
-# timestamp: Wed Jun 13 2018 21:34:50 GMT+0100 (GMT Summer Time)
+# timestamp: Thu Jun 14 2018 21:48:10 GMT+0100 (GMT Summer Time)
 
 type AggregateLink {
   count: Int!
