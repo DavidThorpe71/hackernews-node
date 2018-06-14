@@ -67,3 +67,13 @@ You can import defintions from the generated schema using below syntax in .graph
 # import Link from "./generated/prisma.graphql"
 ```
 
+## Running this app
+
+1. run `node src/start.js` in one terminal
+1. run `graphql playground` in another terminal
+
+## Further info
+1. `datamodel.graphql` is the data model: like mongodb Model.
+1. `schema.graphql` is where you define ...
+1. `prisma deploy` will update the generated database schema in `src/generated/prisma.graphql`
+1. `schema.graphql` is the application schema
