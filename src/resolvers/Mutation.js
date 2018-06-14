@@ -49,7 +49,26 @@ async function login(parent, args, context, info) {
   }
 }
 
+function post(parent, args, context, info) {
+
+  // 1. Use getUserId helper function from utils.js
+  const userId = getUserId(context)
+  // 2. Use Prisma binding to create the Link using the data sent along in the args of the post mutation
+  return context.db.mutation.createLink(
+    {
+      data: {
+        url: args.url,
+        description: args.description,
+        // Use userId to connect the link to the User who is creating it - using the connect mutation
+        postedBy: { connect: { id: userId } }
+      },
+    },
+    info,
+  )
+}
+
 module.exports = {
   signup,
-  login
+  login,
+  post
 }
