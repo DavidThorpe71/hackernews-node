@@ -69,7 +69,7 @@ You can import defintions from the generated schema using below syntax in .graph
 
 ## Running this app
 
-1. run `node src/start.js` in one terminal
+1. run `node src/index.js` in one terminal
 1. run `graphql playground` in another terminal
 
 ## Further info

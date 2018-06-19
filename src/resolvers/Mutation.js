@@ -11,7 +11,7 @@ async function signup(parent, args, context, info) {
   // N.B. id is hardcorded in the selection set
   const user = await context.db.mutation.createUser({
     data: { ...args, password }
-  }, `{id}`)
+  }, ` { id } `)
 
   // 3. Generate a JWT which is signed by APP_SECRET
   const token = jwt.sign({ userId: user.id }, APP_SECRET)
@@ -24,10 +24,8 @@ async function signup(parent, args, context, info) {
 }
 
 async function login(parent, args, context, info) {
-
   // 1. Use Prisma binding to get the User using the email that was sent along in the login mutation
-  const user = await context.db.query.user({ where: { email: args.email } }, `{id password}`);
-
+  const user = await context.db.query.user({ where: { email: args.email } }, ` { id password } `)
   // 2. If no user is found return an error
   if (!user) {
     throw new Error('No such user found')
@@ -67,8 +65,32 @@ function post(parent, args, context, info) {
   )
 }
 
+async function vote(parent, args, context, info) {
+  const userId = getUserId(context);
+
+  const linkExists = await context.db.exists.Vote({
+    user: { id: userId },
+    link: { id: args.linkId },
+  })
+
+  if (linkExists) {
+    throw new Error(`Already voted for this link ${args.linkId}`)
+  }
+
+  return context.db.mutation.createVote(
+    {
+      data: {
+        user: { connect: { id: userId } },
+        link: { connect: { id: args.linkId } },
+      }
+    },
+    info
+  )
+}
+
 module.exports = {
   signup,
   login,
-  post
+  post,
+  vote
 }
